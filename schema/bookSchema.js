@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 export const bookSchema = z.object({
-    title: z.string().min(5, { message: "Name must be at least 5 characters" }),
-    description: z.string().min(10, { message: "Name must be at least 5 characters" }).max(200, { message: "Description must be no more then 200 characters" }),
-    coverImage: z.string().url(),
-    file: z.string().url(),
-    author: z.string().min(5, { message: "Name must be at least 5 characters" })
+    title: z.string({ required_error: "Title is required!" }).min(5, { message: "Book Name must be at least 5 characters" }),
+    description: z.string({ required_error: "Description is required!" }).min(10, { message: "Description must be at least 10 characters" }).max(200, { message: "Description must be no more then 200 characters" }),
+    bookImage: z.string({ required_error: "Book Image URL is required!" }).url({ message: "Image URL is invalid" }),
+    bookPdfUrl: z.string({ required_error: "Book PDF URL is required!" }).url({ message: "PDF URL is invalid" }),
+    author: z.string({ required_error: "Author Name is required!" }).min(5, { message: "Author Name must be at least 5 characters" })
 })
